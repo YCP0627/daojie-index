@@ -31,12 +31,17 @@ export default {
 }
 .serve-list-con .title a {
     color: #E6454A;
+    font-size: 14px;
+}
+.serve-list-con{
+    width: 300px;
 }
 .serve-list-con .title a:hover {
     text-decoration: underline;
 }
 .serve-list-con ul li {
     list-style: none;
+    width: 33%;
 }
 .serve-list-con li a {
     font-size: 12px;
@@ -44,14 +49,20 @@ export default {
 
 .serve-list {
     width: 391px;
-    height: 90px;
+    box-sizing: border-box;
+    height: 130px;
     padding: 0 0 40px 0;
+    border-right: 1px solid #f0f0f0;
 }
 .serve-list:nth-child(3n) {
     width: 397px;
     margin-left: -30px;
     position: relative;
     right: -30px;
+    border-right: 0;
+}
+.serve-list:nth-last-child(1) {
+    border-right: 0;
 }
 </style>
 

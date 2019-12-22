@@ -43,6 +43,35 @@
       <div class="serve-all flex">
         <serve-list v-for="(list,index) in serveLists" v-bind:key = index :serveList=list></serve-list>
       </div>
+      <div class="com-intro">
+        <ul class="intro-con flex">
+          <li class="flex">
+            <a href="javascript:;"></a>
+            <img src="@/assets/home/icon-brand-rz2x.png" alt="">
+            <div class="intro-word">
+              <h3>3亿美金</h3>
+              <p>2015年 完成3亿美金A轮投资</p>
+            </div>
+          </li>
+          <li class="flex">
+            <a href="javascript:;"></a>
+            <img src="@/assets/home/icon-brand-jt2x.png" alt="">
+            <div class="intro-word">
+              <h3>2000万家庭</h3>
+              <p>致力于为亿万家庭提供标准化到家服务</p>
+            </div>
+          </li>
+          <li class="flex">
+            <a href="javascript:;"></a>
+            <img src="@/assets/home/icon-brand-ldz2x.png" alt="">
+            <div class="intro-word">
+              <h3>200万优秀劳动者</h3>
+              <p>专业培训的优秀劳动者受到用户好评</p>
+            </div>
+          </li>                    
+        </ul>
+      </div>
+
     </div>
   </div>
 </template>
@@ -199,5 +228,43 @@ li:last-child{
 .con-ad,
 .con-nav {
     margin-bottom: 14px;
+}
+.intro-con {
+  padding: 30px 0 30px 0;
+}
+.intro-con li img {
+  width: 40px;
+  height: 40px;
+  margin-right: 40px;
+}
+.intro-con li{
+  width: 366px;
+  height: 118px;
+  list-style: none;
+  border: 1px solid #E4E4E4;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.intro-con li a {
+  position: absolute;
+  width: 366px;
+  height: 118px;
+  top: 0;
+  left: 0;
+}
+.intro-con li h3 {
+  font-size: 18px;
+  color: #333;
+  line-height: 24px;
+  font-weight: 400;
+}
+.intro-con li p {
+  font-family: PingFangSC-Light,"Microsoft YaHei",sans-serif;
+  margin-top: -18px;
+  font-size: 14px;
+}
+.intro-word {
+  margin-top: -10px;
 }
 </style>
