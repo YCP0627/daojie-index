@@ -3,13 +3,13 @@
         <div class="header-con">
             <div class="city">
                 <div class="city-cur">
-                    长沙
+                    {{ currentCity }}
                 </div>
                 <dl class="city-change">
                     <dt>[</dt>
-                    <dd><a href="https://bj.daojia.com">北京</a></dd>
-                    <dd><a href="https://sh.daojia.com">上海</a></dd>
-                    <dd><a href="https://sz.daojia.com">广州</a></dd>
+                    <dd><a href="javascript:;" @click="changeCity('0')">{{ city[0] }}</a></dd>
+                    <dd><a href="javascript:;" @click="changeCity('1')">{{ city[1] }}</a></dd>
+                    <dd><a href="javascript:;" @click="changeCity('2')">{{ city[2] }}</a></dd>
                     <dd><a href="//about.daojia.com/changeCity">切换城市</a></dd>
                     <dt>]</dt>
                 </dl>
@@ -22,9 +22,23 @@
     </div>
 </template>
 
+<script>
 export default {
-
+    data: function() {
+        return {
+            currentCity: '长沙',
+            city:['上海','北京','广州']
+        }
+    },
+    methods: {
+        changeCity(index) {
+            let item = this.currentCity;
+            this.currentCity = this.city[index];
+            this.$set(this.city,index,item);
+        }
+    }
 }
+</script>
 
 <style>
 .header {

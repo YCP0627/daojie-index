@@ -1,33 +1,53 @@
 <template>
-    <div class="search">
-        <div class="search-con">
-            <div class="search-logo">
-                <a href="javascript:;">
-                    <img class="search-logo-img" src="@/assets/home/logo_dj.png" alt="">
-                </a>
+    <div :class="{ 'scroll-search': isScroll }">
+        <div class="search">
+            <div class="search-con">
+                <div class="search-logo">
+                    <a href="javascript:;">
+                        <img class="search-logo-img" src="@/assets/home/logo_dj.png" alt="">
+                    </a>
+                </div>
+                <div class="search-input">
+                    <input class="input-con" type="text" placeholder="请输入服务关键字来寻找服务">
+                    <button class="search-button">搜服务</button>
+                </div>
+                <div class="serach-ad">免费发布服务</div>
             </div>
-            <div class="search-input">
-                <input class="input-con" type="text" placeholder="请输入服务关键字来寻找服务">
-                <button class="search-button">搜服务</button>
+            <div class="hot-con" v-show="!isScroll">
+                <span>大家都在搜：</span>
+                <ul>
+                    <li>开荒保洁</li>
+                    <li>擦玻璃</li>
+                    <li>油烟机清洗</li>
+                    <li>化妆</li>
+                    <li>窗帘清洗</li>
+                </ul>
             </div>
-            <div class="serach-ad">免费发布服务</div>
-        </div>
-        <div class="hot-con">
-            <span>大家都在搜：</span>
-            <ul>
-                <li>开荒保洁</li>
-                <li>擦玻璃</li>
-                <li>油烟机清洗</li>
-                <li>化妆</li>
-                <li>窗帘清洗</li>
-            </ul>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'header'
+    name: 'header',
+    data: function() {
+        return {
+            isScroll: false
+        }
+    },
+    methods: {
+        scrollHander:function() {
+            // let scrollHeight = document.querySelector('.search').scrollTop;
+            if((document.documentElement.scrollTop > 90)) {
+                this.isScroll = true;
+            } else {
+                this.isScroll = false;
+            }
+        }
+    },
+    mounted () {
+    window.addEventListener('scroll', this.scrollHander)
+    }
 }
 </script>
 
@@ -39,6 +59,17 @@ export default {
     position: relative;
     padding-top: 10px;
     font-size: 14px;
+}
+.scroll-search {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    background-color: rgba(255,255,255,.8);
+    z-index: 999;
+}
+.scroll-search .search {
+    padding-top: 0;
 }
 .search-con {
     height: 100%;
@@ -98,9 +129,8 @@ input::-webkit-input-placeholder,
     position: absolute;
     color: #999;
     font-size: 12px;
+    bottom: -5px;
     left: 30%;
-    bottom: -4%;
-    /* transform: translateX(-47%) */
 }
 .hot-con ul,
 .hot-con li {

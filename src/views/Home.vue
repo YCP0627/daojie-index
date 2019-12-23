@@ -71,7 +71,34 @@
           </li>                    
         </ul>
       </div>
-
+    </div>
+    <div class="cfooter">
+      <div class="footer-con">
+        <ul class="f-flex our-links">
+          <li><a href="">关于我们</a></li>
+          <li><a href="">网站地图</a></li>
+          <li><a href="">城市地图</a></li>
+          <li><a href="">知识产权保护投诉</a></li>
+          <li><a href="">隐私政策</a></li>
+        </ul>
+        <ul class="about-links f-flex">
+          <li v-for = "(value,index) in footerLinks" :key="index" @mouseenter="controlShow(index)" :class="{ 'current': isCurrent[index] }">
+            {{ value }}
+          </li>
+        </ul>
+        <ul class="about-link">
+          <li v-for="(lists,index) in Links" :key="index" v-show="isCurrent[index]"><a href="" v-for="(value,index) in lists" :key="index">{{ value }}</a></li>
+        </ul>
+        <div class="com-name">天津五八到家生活服务有限公司 及 北京五八到家信息技术有限公司 及 北京五八信息技术有限公司</div>
+        <div class="com-remarks">
+          ©2017 Daojia.com 58到家版权所有
+          <a href="http://www.miitbeian.gov.cn">津ICP备15004920号</a>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12019202000163">
+          <span class="gongan"></span>&nbsp;津公网安备 12019202000163号
+          </a>
+          &nbsp;&nbsp;增值电信业务经营许可证：津B2-20160028&nbsp;&nbsp;知识产权专线：010-60845452-103030
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +109,7 @@
 import Header from '@/components/Header.vue'
 import Search from '@/components/Search.vue'
 import ServeList from '@/components/ServeList'
+// import Vue from 'vue'
 
 export default {
   name: 'home',
@@ -115,13 +143,36 @@ export default {
         {title:'家政',con:['日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁'],img:require('@/assets/home/class_item_baojie.jpg')},
         {title:'家政',con:['日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁'],img:require('@/assets/home/class_item_baojie.jpg')},
         {title:'家政',con:['日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁','日常保洁'],img:require('@/assets/home/class_item_baojie.jpg')},
-      ]
+      ],
+      footerLinks:['热门服务','热门城市','周边城市','友情链接','知识内容'],
+      Links:[
+        ['上海保洁','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆','上海保姆'],
+        ['长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家'],
+        ['长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家','长沙58到家'],
+        ['服务信息','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','长沙58到家','长沙58到家','长沙58到家'],
+        ['资讯','资讯','资讯','资讯','资讯','资讯','资讯','长沙58到资讯家','长沙58到家','长沙58到家','长沙58到家','长沙58到家']
+      ],
+      isCurrent:[false,false,false,false,false]
     }
   },
   components: {
     Header,
     Search,
     ServeList
+  },
+  methods: {
+    controlShow(index) {
+      console.log(index)
+      console.log(this.isCurrent)
+      for(let i=0; i<this.isCurrent.length; i++) {
+        if(i == index) {
+          this.$set(this.isCurrent, i, true);
+        } else {
+          this.$set(this.isCurrent, i, false);
+        }
+      }
+      console.log(this.isCurrent);
+    }
   }
 }
 </script>
@@ -194,12 +245,19 @@ li:last-child{
 }
 .nav-list {
   width: 178px;
+  height: 178px;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 .nav-list img {
-  width: 100%;
-  height: auto;
+  width: 178px;
+  height: 178px;
+  transition:all 1s;
+  transform-origin: 50% 50%;
+}
+.con-nav .nav-list img:hover{
+  transform: scale(1.1)
 }
 .nav-list h3 {
   font-size: 16px;
@@ -211,6 +269,7 @@ li:last-child{
   font-weight: 400;
 }
 .nav-list p {
+  width: 100%;
   font-size: 12px;
   position: absolute;
   color: #999;
@@ -266,5 +325,66 @@ li:last-child{
 }
 .intro-word {
   margin-top: -10px;
+}
+.cfooter {
+  width: 100%;
+  background-color: #F5F5F5;
+  padding: 21px 0;
+}
+.footer-con {
+  width: 1150px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+}
+.footer-con>div {
+  margin: 10px 0;
+}
+.footer-con li {
+  list-style: none;
+}
+.our-links li {
+  padding: 6px 0;
+}
+.our-links li a{
+  display: block;
+  padding: 0 35px;
+  border-right: 1px solid #ddd;
+}
+.our-links li:nth-last-child(1) a{
+  border-right: 0;
+}
+.about-links  {
+  margin: 20px 0 16px 0;
+}
+
+.about-link li{
+  padding-bottom: 12px;
+}
+.about-link li a {
+  padding: 0 2px;
+}
+.about-links > li {
+  margin: 0 9px;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #E5E5E5;
+}
+.about-links li,
+.about-links li a,
+.com-name,
+.com-remarks,
+.com-remarks a,
+.about-link li a {
+  color: #999;
+}
+.f-flex {
+  display: flex;
+  justify-content: center;
+}
+.about-links .current {
+  background-color: #858585;
+  color: #fff;
 }
 </style>
