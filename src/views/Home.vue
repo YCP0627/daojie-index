@@ -8,10 +8,15 @@
     </div>
     <Search></Search>
     <div class="serve-nav">
-        <ul class="serve-nav-con">
-            <li class="app qr-code"><a href="javascript;:">58到家APP</a></li>
-            <li class="gzh qr-code"><a href="javascript;:">公众号</a></li>
-            <li class="xcx qr-code"><a href="javascript;:">小程序</a></li>
+        <ul class="serve-nav-con clearfix">
+            <li class="app qr-code">58到家APP
+              <div class="qr-code-con">
+                <img src="@/assets/home/qr-app-home.png" alt="">
+                <span>扫描二维码 安装客户端</span>
+              </div>
+            </li>
+            <li class="gzh qr-code">公众号</li>
+            <li class="xcx qr-code">小程序</li>
             <li><a href="javascript;:">家政</a></li>
             <li><a href="javascript;:">保姆月嫂</a></li>
             <li><a href="javascript;:">快狗打车</a></li>
@@ -100,6 +105,10 @@
         </div>
       </div>
     </div>
+    <div class="open-ad" v-show="isOpen">
+      <div class="open-ad-img"><img src="@/assets/home/bb-img-190927.png" alt=""></div>
+      <div class="open-ad-close" @click="closeAd()"><img src="@/assets/home/bb-close_50b4ff2.png" alt=""></div>
+    </div>
   </div>
 </template>
 
@@ -152,7 +161,8 @@ export default {
         ['服务信息','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','身高计算器','长沙58到家','长沙58到家','长沙58到家'],
         ['资讯','资讯','资讯','资讯','资讯','资讯','资讯','长沙58到资讯家','长沙58到家','长沙58到家','长沙58到家','长沙58到家']
       ],
-      isCurrent:[false,false,false,false,false]
+      isCurrent:[false,false,false,false,false],
+      isOpen: true
     }
   },
   components: {
@@ -172,6 +182,9 @@ export default {
         }
       }
       console.log(this.isCurrent);
+    },
+    closeAd() {
+      this.isOpen = false;
     }
   }
 }
@@ -193,11 +206,11 @@ export default {
   padding: 5px 0;
   border-bottom: 1px solid #e6454a;
 }
-.serve-nav-con {
-  overflow: hidden;
-}
 .qr-code {
   padding-right: 12px;
+}
+.serve-nav-con a {
+  color:#333;
 }
 .serve-nav-con li{
   float: left;
@@ -209,23 +222,75 @@ export default {
   line-height: 36px;
   margin-right: 50px;
 }
-.serve-nav-con .xcx,
-li:last-child{
-  margin-right: 0;
+.serve-nav-con li:last-child{
+  margin-right: 0px;
+}
+.serve-nav-con .xcx{
+  margin-right: 12px;
 }
 
-.gzh a,
-.xcx a {
+.gzh ,
+.xcx {
   color: #C39869;
 }
-.app a {
+.app  {
   font-weight: 800;
-  color: #E6454A
-}
-.app {
-  padding-left: 23px;
+  color: #E6454A;
+    padding-left: 23px;
   background: url('../assets/home/icon_mobi2x_e9ee54d.png') no-repeat left;
   background-size: 20px 20px;
+}
+
+.gzh,
+.xcx,
+.app {
+  position: relative;
+}
+.gzh:after,
+.xcx:after,
+.app:after {
+  content:'';
+  display: block;
+  height: 3px;
+  width: 3px;
+  position: absolute;
+  right:2px;
+  bottom: 17px;
+  border-right: .9px solid #C39869;
+  border-top: .9px solid #C39869;
+  transition: all .1s;
+  transform: rotate(135deg)
+}
+.app:after {
+  border-right: .9px solid #E6454A;
+  border-top: .9px solid #E6454A;
+}
+.gzh:hover, .xcx:hover, .app:hover {
+  cursor: pointer;
+}
+.gzh:hover:after, .xcx:hover:after, .app:hover:after {
+  transform:rotate(-45deg);
+  bottom: 15px;
+}
+.qr-code-con {
+  position: absolute;
+  bottom: -164px;;
+  width: 140px;
+  left:0;
+  /* height: 140px; */
+  z-index: 999;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size:12px;
+  line-height: 10px;
+  text-align: center;
+  font-weight: 400;
+  background-color:#fff;
+  padding-bottom: 8px;
+}
+.qr-code-con img {
+  width: 100%;
+  height: auto;
 }
 .home-contain {
   width: 1150px;
@@ -386,5 +451,46 @@ li:last-child{
 .about-links .current {
   background-color: #858585;
   color: #fff;
+}
+.open-ad {
+  background-color: rgba(255, 125, 102, .8);
+  width: 100%;
+  height: 170px;
+  position: fixed;
+  bottom: 0;
+}
+.open-ad-img {
+  position: absolute;
+  top: -30px;
+  left:50%;
+  margin-left: -470px;
+  width: 940px;
+  opacity: 1.5;
+}
+.open-ad-close {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right:175px;
+}
+.open-ad-close:hover {
+  cursor: pointer;
+}
+.open-ad img {
+  width: 100%;
+  height: auto;
+}
+/* 清除浮动方案clearfix */
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix{
+    *zoom: 1;
 }
 </style>
