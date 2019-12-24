@@ -236,7 +236,7 @@ export default {
 .app  {
   font-weight: 800;
   color: #E6454A;
-    padding-left: 23px;
+  padding-left: 23px;
   background: url('../assets/home/icon_mobi2x_e9ee54d.png') no-repeat left;
   background-size: 20px 20px;
 }
@@ -274,11 +274,11 @@ export default {
 }
 .qr-code-con {
   position: absolute;
-  bottom: -164px;;
+  bottom: -165px;;
   width: 140px;
   left:0;
   /* height: 140px; */
-  z-index: 999;
+  z-index: 8;
   border: 1px solid #ddd;
   color: #333;
   font-size:12px;
@@ -287,6 +287,20 @@ export default {
   font-weight: 400;
   background-color:#fff;
   padding-bottom: 8px;
+}
+.qr-code-con:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -6px;
+  left:50%;
+  margin-left: -4px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  transform: rotate(-45deg)
 }
 .qr-code-con img {
   width: 100%;
@@ -453,11 +467,12 @@ export default {
   color: #fff;
 }
 .open-ad {
-  background-color: rgba(255, 125, 102, .8);
+  background-color: rgba(255, 38, 0, .6);
   width: 100%;
   height: 170px;
   position: fixed;
   bottom: 0;
+  z-index: 999
 }
 .open-ad-img {
   position: absolute;
@@ -472,7 +487,7 @@ export default {
   height: 15px;
   position: absolute;
   top: 10px;
-  right:175px;
+  right:135px;
 }
 .open-ad-close:hover {
   cursor: pointer;
