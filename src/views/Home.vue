@@ -216,8 +216,6 @@ export default {
   },
   methods: {
     controlShow(index) {
-      console.log(index)
-      console.log(this.isCurrent)
       for(let i=0; i<this.isCurrent.length; i++) {
         if(i == index) {
           this.$set(this.isCurrent, i, true);
@@ -225,7 +223,6 @@ export default {
           this.$set(this.isCurrent, i, false);
         }
       }
-      console.log(this.isCurrent);
     },
     closeAd() {
       this.isOpen = false;
