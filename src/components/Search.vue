@@ -11,16 +11,22 @@
                     <input class="input-con" type="text" placeholder="请输入服务关键字来寻找服务">
                     <button class="search-button">搜服务</button>
                 </div>
-                <div class="serach-ad">免费发布服务</div>
+                <div class="serach-ad" @mouseenter="isShow=true">
+                    免费发布服务
+                    <div class="bus-code" @mouseenter="isShow=!isShow" v-show="isShow">
+                        <img src="@/assets/home/qr-app-home.png" alt="">
+                        <span>扫描二维码 安装客户端</span>
+                    </div>                      
+                </div>
             </div>
             <div class="hot-con" v-show="!isScroll">
                 <span>大家都在搜：</span>
                 <ul>
-                    <li>开荒保洁</li>
-                    <li>擦玻璃</li>
-                    <li>油烟机清洗</li>
-                    <li>化妆</li>
-                    <li>窗帘清洗</li>
+                    <li><a>开荒保洁</a></li>
+                    <li><a>擦玻璃</a></li>
+                    <li><a>油烟机清洗</a></li>
+                    <li><a>化妆</a></li>
+                    <li><a>窗帘清洗</a></li>
                 </ul>
             </div>
         </div>
@@ -32,7 +38,8 @@ export default {
     name: 'header',
     data: function() {
         return {
-            isScroll: false
+            isScroll: false,
+            isShow: true
         }
     },
     methods: {
@@ -137,7 +144,58 @@ input::-webkit-input-placeholder,
     display: inline;
     padding: 0;
 }
+.hot-con li a {
+    color: #999;
+}
+.hot-con li a:hover {
+    color: #e6454a;
+}
 .hot-con li {
     margin-left: 30px;
+}
+.serach-ad {
+    position: relative;
+}
+.bus-code {
+  position: absolute;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size:12px;
+  line-height: 10px;
+  text-align: center;
+  font-weight: 400;
+  padding-bottom: 8px;
+  background-color:#fff;
+  opacity: 0;
+  z-index: 10;
+  transition: all 200ms;
+  transform: translateY(0) scale(0);
+  width: 140px;
+  bottom: -165px;;
+  left:-12px;
+  z-index: 8;
+}
+.bus-code img {
+    width: 100%;
+    height: auto;
+}
+.bus-code:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -6px;
+  left:50%;
+  margin-left: -4px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  transform: rotate(-45deg);    
+}
+.serach-ad:hover .bus-code{
+  opacity: 1;
+  transform-origin: 50% 0;
+  transform: translateY(0) scale(1);
 }
 </style>

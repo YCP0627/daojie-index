@@ -9,14 +9,57 @@
     <Search></Search>
     <div class="serve-nav">
         <ul class="serve-nav-con clearfix">
-            <li class="app qr-code">58到家APP
-              <div class="qr-code-con">
+            <li class="app qr-code" @mouseenter="isCode=true">
+              58到家APP
+              <div class="qr-code-con app-code" @mouseenter="isCode=!isCode" v-show="isCode">
                 <img src="@/assets/home/qr-app-home.png" alt="">
                 <span>扫描二维码 安装客户端</span>
               </div>
             </li>
-            <li class="gzh qr-code">公众号</li>
-            <li class="xcx qr-code">小程序</li>
+            <li class="gzh qr-code"  @mouseenter="isCode=true">
+              公众号
+              <ul class="qr-code-con gzh-code flex" @mouseenter="isCode=!isCode" v-show="isCode">
+                <li>
+                  <img src="@/assets/home/qr-wx-daojia.jpg" alt="">
+                  <div class="gzh-intro">
+                    <p>【58到家公众号】</p>
+                    <p>重要提醒不错过</p>
+                    <p>手机操作更简单</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="@/assets/home/qr-wx-jiazheng.jpg" alt="">
+                  <div class="gzh-intro">
+                    <p>【58家政订阅号】</p>
+                    <p>干货福利通通有</p>
+                    <p>最新活动抢先知</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="@/assets/home/qr-wx-jiuye.jpg" alt="">
+                  <div class="gzh-intro">
+                    <p>【58家政就业号】</p>
+                    <p>阿姨上户更轻松</p>
+                    <p>简历创建更便捷</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="@/assets/home/qr-wx-ayi.jpg" alt="">
+                  <div class="gzh-intro">
+                    <p>【阿姨一点通】</p>
+                    <p>技能提升好帮手</p>
+                    <p>厨艺经验交流多</p>
+                  </div>
+                </li>                                              
+              </ul>  
+            </li>
+            <li class="xcx qr-code"  @mouseenter="isCode=true">
+              小程序
+              <div class="qr-code-con xcx-code" @mouseenter="isCode=!isCode" v-show="isCode">
+                <img src="@/assets/home/qr-xcx.jpg" alt="">
+                <span>扫码即用 无需下载</span>
+              </div>              
+            </li>
             <li><a href="javascript;:">家政</a></li>
             <li><a href="javascript;:">保姆月嫂</a></li>
             <li><a href="javascript;:">快狗打车</a></li>
@@ -97,17 +140,17 @@
         <div class="com-name">天津五八到家生活服务有限公司 及 北京五八到家信息技术有限公司 及 北京五八信息技术有限公司</div>
         <div class="com-remarks">
           ©2017 Daojia.com 58到家版权所有
-          <a href="http://www.miitbeian.gov.cn">津ICP备15004920号</a>
-          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12019202000163">
-          <span class="gongan"></span>&nbsp;津公网安备 12019202000163号
-          </a>
+          <a href="http://www.miitbeian.gov.cn">  津ICP备15004920号  </a>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12019202000163">津公网安备 12019202000163号</a>
           &nbsp;&nbsp;增值电信业务经营许可证：津B2-20160028&nbsp;&nbsp;知识产权专线：010-60845452-103030
         </div>
       </div>
     </div>
     <div class="open-ad" v-show="isOpen">
-      <div class="open-ad-img"><img src="@/assets/home/bb-img-190927.png" alt=""></div>
-      <div class="open-ad-close" @click="closeAd()"><img src="@/assets/home/bb-close_50b4ff2.png" alt=""></div>
+      <div class="open-ad-img">
+        <img src="@/assets/home/bb-img-190927.png" alt="">
+        <div class="open-ad-close" @click="closeAd()"><img src="@/assets/home/bb-close_50b4ff2.png" alt=""></div>
+      </div>
     </div>
   </div>
 </template>
@@ -162,7 +205,8 @@ export default {
         ['资讯','资讯','资讯','资讯','资讯','资讯','资讯','长沙58到资讯家','长沙58到家','长沙58到家','长沙58到家','长沙58到家']
       ],
       isCurrent:[false,false,false,false,false],
-      isOpen: true
+      isOpen: true,
+      isCode: true,
     }
   },
   components: {
@@ -212,7 +256,10 @@ export default {
 .serve-nav-con a {
   color:#333;
 }
-.serve-nav-con li{
+.serve-nav-con a:hover {
+  color: #E6454A;
+} 
+.serve-nav-con > li{
   float: left;
   list-style: none;
   top: 0;
@@ -274,19 +321,71 @@ export default {
 }
 .qr-code-con {
   position: absolute;
-  bottom: -165px;;
-  width: 140px;
-  left:0;
-  /* height: 140px; */
-  z-index: 8;
   border: 1px solid #ddd;
   color: #333;
   font-size:12px;
   line-height: 10px;
   text-align: center;
   font-weight: 400;
-  background-color:#fff;
   padding-bottom: 8px;
+  background-color:#fff;
+  opacity: 0;
+  z-index: 10;
+  transition: all 200ms;
+  transform: translateY(0) scale(0);
+}
+.qr-code:hover .qr-code-con{
+  opacity: 1;
+  transform-origin: 50% 0;
+  transform: translateY(0) scale(1);
+}
+.qr-code-con:hover {
+  opacity: 0;
+}
+.app-code,
+.xcx-code {
+  width: 140px;
+  bottom: -165px;;
+  left:-12px;
+  z-index: 8;
+}
+.xcx-code {
+  left: -18px;
+}
+.xcx-code{
+  left: -50px;
+}
+.gzh-code {
+  width:424px;
+  padding:6px 7px 6px 0;
+  left: -52px;
+  bottom: -210px;
+}
+.gzh-code > li {
+  width: 50%;
+  list-style: none;
+}
+.gzh-code li:nth-child(2n+1) {
+  margin-left: -4px;
+}
+.gzh-intro {
+  float:right;
+  margin-top: 8px;
+  right: 5px;
+}
+.gzh-intro p {
+  color: #666;
+  line-height: 7px;
+}
+.gzh-intro p:nth-child(1) {
+  color: #E6454A;
+  line-height: 14px;
+}
+.gzh-code li img {
+  width: 96px;
+  height: 96px;
+  margin: 0;
+  padding: 0;
 }
 .qr-code-con:before {
   content: '';
@@ -300,7 +399,10 @@ export default {
   background-color: #fff;
   border-right: 1px solid #ddd;
   border-top: 1px solid #ddd;
-  transform: rotate(-45deg)
+  transform: rotate(-45deg);
+}
+.gzh-code:before {
+  left: 70px;
 }
 .qr-code-con img {
   width: 100%;
@@ -333,10 +435,10 @@ export default {
   width: 178px;
   height: 178px;
   transition:all 1s;
-  transform-origin: 50% 50%;
 }
-.con-nav .nav-list img:hover{
-  transform: scale(1.1)
+.con-nav .nav-list:hover img{
+  transform: scale(1.1);
+  transform-origin: 50% 50%;
 }
 .nav-list h3 {
   font-size: 16px;
@@ -458,6 +560,27 @@ export default {
 .about-link li a {
   color: #999;
 }
+.com-remarks a{
+  margin: 0 8px;
+  position: relative;
+}
+.com-remarks a:hover {
+  color: #E6454A;
+}
+.com-remarks a:nth-of-type(1){
+  padding-left: 24px;
+}
+.com-remarks a:nth-of-type(1)::before{
+  content: '';
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background:url('../assets/home/gongan@3x_9a475b5.png') no-repeat;
+  background-size: 20px;
+  left: 0px;
+  top: -2px;
+}
 .f-flex {
   display: flex;
   justify-content: center;
@@ -486,8 +609,8 @@ export default {
   width: 15px;
   height: 15px;
   position: absolute;
-  top: 10px;
-  right:135px;
+  top: 40px;
+  right:-28px;
 }
 .open-ad-close:hover {
   cursor: pointer;
